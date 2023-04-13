@@ -90,6 +90,44 @@ void Tree::print() {
 	cout << endl;
 }
 
+void Tree::printNodeInTree(Node* highlightedNode)
+{
+	int height = this->height();
+	int spacing = 3;
+	int width = (int)((pow(2, height) - 1) * (spacing + 1) + 1);
+	int offset = (width - 1) / 2;
+
+	for (int depth = 0; depth <= height; depth++)
+	{
+		if (depth > 0) {
+			cout << string(offset + 1, ' ');
+
+			for (int i = (int)pow(2, depth - 1); i > 0; i--)
+				cout << "/" << string(spacing - 2, '-') << '\\' << string(spacing + 2, ' ');
+			cout << endl;
+		}
+
+		cout << string(offset, ' ');
+
+		for (string node : *root->getNodesAtDepth(depth, new vector<string>)) {
+			if (node == "X") {
+				cout << "\033[0;90m" << node << string(spacing, ' ');
+			}
+			else {
+				int diffSpacing = (spacing - (int)node.size() + 1) >= 0 ? (spacing - (int)node.size() + 1) : 0;
+
+				node == highlightedNode->data ? cout << "\033[0;32m" : cout << "\033[0;37m";
+
+				cout << node << string(diffSpacing, ' ');
+			}
+		}
+		cout << "\033[0;37m" << endl;
+		spacing = offset + 1;
+		offset = offset / 2 - 1;
+	}
+	cout << endl;
+}
+
 void Tree::deleteNode(string target) {
 	root = root->deleteNode(target);
 }

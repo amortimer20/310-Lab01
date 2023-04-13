@@ -16,6 +16,7 @@ public:
 	int height();
 	vector<string> getNodesAtDepth(int);
 	void print();
+	void printNodeInTree(Node*);
 	void deleteNode(string);
 	bool isBalanced();
 	void rebalance();

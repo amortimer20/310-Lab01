@@ -19,25 +19,7 @@ int main(int argc, char* argv[])
 {
     string choice;
     Tree tree = Tree();
-    /*
-    		X -i word
-				□ insert the given word
-			X -d word
-				□ delete the given word
-			X -iv word
-				□ insert the given word, visualizing the process
-			X -dv word
-				□ delete the given word, visualizing the process
-			X -if filename
-				□ insert words from filename
-			X -df filename
-				□ delete words from filename
-			§ -ifv filename
-				□ insert words from file, with visualization
-			§ -dfv filename
-				□ delete words from file, with visualization
-
-    */
+    
     for (int i = 0; i < argc; i++)
     {
         if (string(argv[i]) == "-i") {
@@ -141,7 +123,12 @@ int main(int argc, char* argv[])
         else if (choice == "3" || choice == "search for node") {
             cout << "Search for: ";
             cin >> choice;
-            tree.search(choice) ? cout << "Node exists.\n" : cout << "Node not found.\n";
+            Node* foundNode = tree.search(choice);
+
+            if (foundNode)
+                tree.printNodeInTree(foundNode);
+            else
+                cout << "Node not found.\n";
         }
         else if (choice == "4" || choice == "delete node") {
             cout << "Delete node: ";

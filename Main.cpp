@@ -50,7 +50,9 @@ int main(int argc, char* argv[])
             while (infile) {
                 string fileInput;
                 infile >> fileInput;
-                tree.insert(fileInput);
+                
+                if (fileInput.size() > 0)
+                    tree.insert(fileInput);
             }
         }
         else if (string(argv[i]) == "-df") {

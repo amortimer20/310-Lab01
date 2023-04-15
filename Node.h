@@ -16,10 +16,10 @@ public:
 	int height(int);
 	vector<string>* getNodesAtDepth(int, vector<string>*);
 	Node* deleteNode(string);
-	string getMinValue();
 	bool isBalanced();
 	Node* fixImbalance();
 	void rebalance();
 private:
 	int getLRHeightDifference();
+	string getMinValue();
 };
